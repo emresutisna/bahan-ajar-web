@@ -15,4 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('master/jurusan', 'JurusanController@index');
+// Route::get('master/jurusan', 'JurusanController@index')->name('master.jurusan');
+Route::resource('master/jurusan','JurusanController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

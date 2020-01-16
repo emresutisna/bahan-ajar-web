@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 // Route::get('master/jurusan', 'JurusanController@index')->name('master.jurusan');
 Route::resource('master/jurusan','JurusanController');
+Route::resource('master/mahasiswa','MahasiswaController');
 
 Auth::routes();
 

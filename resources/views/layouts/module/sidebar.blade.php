@@ -23,7 +23,7 @@
             </a>
             <ul class="nav-dropdown-items">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{route('mahasiswa.index')}}">
                         <i class="nav-icon fa fa-graduation-cap"></i> Mahasiswa
                     </a>
                 </li>

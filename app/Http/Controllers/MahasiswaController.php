@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Mahasiswa;
 use App\Jurusan;
 
-class JurusanController extends Controller
+class MahasiswaController extends Controller
 {
 	public function __construct()
     {
@@ -13,19 +14,25 @@ class JurusanController extends Controller
     }
 
     public function index(){
-    	$jurusans = Jurusan::paginate(1);
-    	return view('master.jurusan.index', compact('jurusans'));    	
+    	$mahasiswas = Mahasiswa::paginate(10);
+    	return view('master.mahasiswa.index', compact('mahasiswas'));    	
+    }
+
+    public function create(){
+    	$jurusans = Jurusan::get();    	
+    	return view('master.mahasiswa.create', compact('jurusans'));
     }
 
     public function store(Request $request)
 	{
 	    $this->validate($request, [
-	    	'kode_jurusan' => 'required|string|max:2|min:2||unique:jurusans',
-	        'nama' => 'required|string|max:100'
+	    	'nim' => 'required|string|max:9|min:9||unique:mahasiswas',
+	        'nama' => 'required|string|max:150',
+	        'tempat_lahir' => 'required|string|max:100'
 	    ]);
 
-	    Jurusan::create($request->except('_token'));
-	    return redirect(route('jurusan.index'))->with(['success' => 'Jurusan Baru Ditambahkan!']);
+	    Mahasiswa::create($request->except('_token'));
+	    return redirect(route('mahasiswa.index'))->with(['success' => 'Mahasiswa Baru Ditambahkan!']);
 	}
 
 	public function edit($id){
@@ -50,8 +57,8 @@ class JurusanController extends Controller
 
 	public function destroy($id)
 	{
-	    $jurusan = Jurusan::findOrFail($id);
-        $jurusan->delete();
-        return redirect(route('jurusan.index'))->with(['success' => 'Jurusan Berhasil Dihapus!']);
+	    $mahasiswa = Mahasiswa::findOrFail($id);
+        $mahasiswa->delete();
+        return redirect(route('mahasiswa.index'))->with(['success' => 'Mahasiswa Berhasil Dihapus!']);
 	}
 }

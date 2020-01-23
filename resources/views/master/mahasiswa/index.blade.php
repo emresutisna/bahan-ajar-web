@@ -5,6 +5,10 @@
     <title>Data Mahasiswa</title>
 @endsection
 
+@section('plugins')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@9.7.0/dist/sweetalert2.min.css">
+@endsection
+
 <!-- TAG YANG DIAPIT OLEH SECTION('CONTENT') AKAN ME-REPLACE @YIELD('CONTENT') PADA MASTER LAYOUTS -->
 @section('content')
 <main class="main">
@@ -53,11 +57,11 @@
                                             <td></td>
                                             <td><strong>{{ $val->nim }}</strong></td>
                                             <td>{{ $val->nama }}</td>
-                                            <td>{{ $val->jurusan_id }}</td>                                            
+                                            <td>{{ $val->jurusan->nama }}</td>                                            
                                             <td>
                                               
                                                 <!-- FORM ACTION UNTUK METHOD DELETE -->
-                                                <form action="{{ route('mahasiswa.destroy', $val->id) }}" method="post">
+                                                <form action="{{ route('mahasiswa.destroy', $val->id) }}" class="form-delete" method="post">
                                                     <!-- KONVERSI DARI @ CSRF & @ METHOD AKAN DIJELASKAN DIBAWAH -->
                                                     @csrf
                                                     @method('DELETE')
@@ -85,4 +89,28 @@
 		</div>
 	</div>
 </main>			
+@endsection
+
+@section('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.7.0/dist/sweetalert2.all.min.js"></script>
+    <script type="text/javascript">
+        $('.form-delete').on('submit', function(e){
+            var form = this;
+            e.preventDefault();
+            Swal.fire({
+              title: 'Hapus data ?',
+              text: "Klik Hapus untuk menghapus data !",
+              type: 'warning',
+              icon: 'question',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Hapus'
+            }).then((result) => {
+              if (result.value) {
+                return form.submit();
+              }
+            })
+        });
+    </script>
 @endsection

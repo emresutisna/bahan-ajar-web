@@ -2,7 +2,7 @@
     <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="{{route('home')}}">
         <img class="navbar-brand-full" src="{{ asset('assets/img/logo.png') }}" width="30" height="30" alt="SIAKAD">
         <img class="navbar-brand-minimized" src="{{ asset('assets/img/logo.png') }}" width="30" height="30" alt="SIAKAD">
         &nbsp;SIAKAD

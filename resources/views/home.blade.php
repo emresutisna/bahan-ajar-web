@@ -28,14 +28,14 @@
                                     <div class="callout callout-info">
                                         <small class="text-muted">Laki-laki</small>
                                         <br>
-                                        <strong class="h4">0 Orang</strong>
+                                        <strong class="h4">{{ $pria }} Orang</strong>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="callout callout-danger">
                                         <small class="text-muted">Perempuan</small>
                                         <br>
-                                        <strong class="h4">0 Orang</strong>
+                                        <strong class="h4">{{ $wanita }} Orang</strong>
                                     </div>
                                 </div>
                             </div>
